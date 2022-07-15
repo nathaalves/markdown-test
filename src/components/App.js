@@ -7,7 +7,7 @@ export default function App () {
     return (
 
         <>
-            {/* <GlobalStyles /> */}
+            <GlobalStyles />
             <Note />
         </>
     );

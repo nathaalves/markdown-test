@@ -4,6 +4,9 @@ import remarkGfm from 'remark-gfm'
 import styled from "styled-components";
 import Button from "./shared/Button";
 
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+
 export default function Note () {
 
     const [markdownText, setMarkdownText] = useState('');
@@ -18,9 +21,43 @@ export default function Note () {
         <>
             <Title />
             {preview ? 
-                <Preview children={markdownText} remarkPlugins={[remarkGfm]} /> 
+                <Preview children={markdownText} remarkPlugins={[remarkGfm]} components={{
+                    code({node, inline, className, children, ...props}) {
+                      const match = /language-(\w+)/.exec(className || '')
+                      return !inline && match ? (
+                        <SyntaxHighlighter
+                          children={String(children).replace(/\n$/, '')}
+                          style={dark}
+                          language={match[1]}
+                          PreTag="div"
+                          {...props}
+                        />
+                      ) : (
+                        <code className={className} {...props}>
+                          {children}
+                        </code>
+                      )
+                    }
+                  }}/> 
             : 
-                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} />
+                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} components={{
+      code({node, inline, className, children, ...props}) {
+        const match = /language-(\w+)/.exec(className || '')
+        return !inline && match ? (
+          <SyntaxHighlighter
+            children={String(children).replace(/\n$/, '')}
+            style={dark}
+            language={match[1]}
+            PreTag="div"
+            {...props}
+          />
+        ) : (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
+    }}/>
             }
             <MarkdownButton onClick={ () => setPreview(false)} >Markdown</MarkdownButton>
             <PreviewButton onClick={ () => setPreview(true)} >Preview</PreviewButton>
