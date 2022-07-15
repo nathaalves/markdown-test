@@ -35,7 +35,7 @@ const Title = styled.input`
     width: 100vw;
     height: 100px;
     padding-left: 20px;
-    background-color: aqua;
+    background-color: azure;
 `
 
 const MarkdownTextArea = styled.textarea`
@@ -47,7 +47,7 @@ const MarkdownTextArea = styled.textarea`
     padding-top: 0px;
     overflow-y: scroll;
 
-    background-color: aqua;
+    background-color: azure;
 `;
 
 const Preview = styled(ReactMarkdown)`
@@ -56,7 +56,7 @@ const Preview = styled(ReactMarkdown)`
     padding: 20px;
     padding-top: 0px;
     overflow-y: scroll;
-    background-color: aqua;
+    background-color: azure;
 `;
 
 const MarkdownButton = styled(Button)`
