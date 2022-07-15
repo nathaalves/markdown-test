@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button`
+
     all: unset;
 
     height: 30px;

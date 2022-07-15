@@ -20,8 +20,8 @@ export default function Note () {
             {preview ? 
                 <Preview children={markdownText} remarkPlugins={[remarkGfm]} /> 
             : 
-                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} 
-            />}
+                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} />
+            }
             <MarkdownButton onClick={ () => setPreview(false)} >Markdown</MarkdownButton>
             <PreviewButton onClick={ () => setPreview(true)} >Preview</PreviewButton>
         </>
