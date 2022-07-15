@@ -45,6 +45,7 @@ const MarkdownTextArea = styled.textarea`
     height: calc(100vh - 100px);
     padding: 20px;
     padding-top: 0px;
+    overflow-y: scroll;
 
     background-color: aqua;
 `;
@@ -54,6 +55,7 @@ const Preview = styled(ReactMarkdown)`
     height: calc(100vh - 100px);
     padding: 20px;
     padding-top: 0px;
+    overflow-y: scroll;
     background-color: aqua;
 `;
 
