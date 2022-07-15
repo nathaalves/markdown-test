@@ -3,9 +3,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from 'remark-gfm'
 import styled from "styled-components";
 import Button from "./shared/Button";
-
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { Prism } from 'react-syntax-highlighter'
+import {dark, a11yDark, vs} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 export default function Note () {
 
@@ -25,9 +24,9 @@ export default function Note () {
                     code({node, inline, className, children, ...props}) {
                       const match = /language-(\w+)/.exec(className || '')
                       return !inline && match ? (
-                        <SyntaxHighlighter
+                        <Prism
                           children={String(children).replace(/\n$/, '')}
-                          style={dark}
+                          style={vs}
                           language={match[1]}
                           PreTag="div"
                           {...props}
@@ -38,26 +37,10 @@ export default function Note () {
                         </code>
                       )
                     }
-                  }}/> 
+                  }}
+                /> 
             : 
-                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} components={{
-      code({node, inline, className, children, ...props}) {
-        const match = /language-(\w+)/.exec(className || '')
-        return !inline && match ? (
-          <SyntaxHighlighter
-            children={String(children).replace(/\n$/, '')}
-            style={dark}
-            language={match[1]}
-            PreTag="div"
-            {...props}
-          />
-        ) : (
-          <code className={className} {...props}>
-            {children}
-          </code>
-        )
-      }
-    }}/>
+                <MarkdownTextArea value={markdownText} onChange={handleMarkdownText} />
             }
             <MarkdownButton onClick={ () => setPreview(false)} >Markdown</MarkdownButton>
             <PreviewButton onClick={ () => setPreview(true)} >Preview</PreviewButton>
@@ -107,3 +90,104 @@ const PreviewButton = styled(Button)`
     top: 20px;
     right: 60px;
 `;
+
+/* code highlighter Style 
+
+a11yDark
+a11yLight
+agate
+anOldHope
+androidstudio
+arduinoLight
+arta
+ascetic
+atelierCaveDark
+atelierCaveLight
+atelierDuneDark
+atelierDuneLight
+atelierEstuaryDark
+atelierEstuaryLight
+atelierForestDark
+atelierForestLight
+atelierHeathDark
+atelierHeathLight
+atelierLakesideDark
+atelierLakesideLight
+atelierPlateauDark
+atelierPlateauLight
+atelierSavannaDark
+atelierSavannaLight
+atelierSeasideDark
+atelierSeasideLight
+atelierSulphurpoolDark
+atelierSulphurpoolLight
+atomOneDarkReasonable
+atomOneDark
+atomOneLight
+brownPaper
+codepenEmbed
+colorBrewer
+darcula
+dark
+defaultStyle
+docco
+dracula
+far
+foundation
+githubGist
+github
+gml
+googlecode
+gradientDark
+gradientLight
+grayscale
+gruvboxDark
+gruvboxLight
+hopscotch
+hybrid
+idea
+irBlack
+isblEditorDark
+isblEditorLight
+kimbieDark
+kimbieLight
+lightfair
+lioshi
+magula
+monoBlue
+monokaiSublime
+monokai
+nightOwl
+nnfxDark
+nnfx
+nord
+obsidian
+ocean
+paraisoDark
+paraisoLight
+pojoaque
+purebasic
+qtcreatorDark
+qtcreatorLight
+railscasts
+rainbow
+routeros
+schoolBook
+shadesOfPurple
+solarizedDark
+solarizedLight
+srcery
+stackoverflowDark
+stackoverflowLight
+sunburst
+tomorrowNightBlue
+tomorrowNightBright
+tomorrowNightEighties
+tomorrowNight
+tomorrow
+vs
+vs2015
+xcode
+xt256
+zenburn
+*/
